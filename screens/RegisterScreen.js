@@ -10,13 +10,13 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Alert.alert('Erro:', 'Senha não compativel');
       return;
     }
 
     const userData = await AsyncStorage.getItem(username);
     if (userData) {
-      Alert.alert('Error', 'User already exists');
+      Alert.alert('Erro:', 'Usuário já existente');
     } else {
       const user = { username, password, disciplinas: [] };
       await AsyncStorage.setItem(username, JSON.stringify(user));
@@ -28,25 +28,25 @@ export default function RegisterScreen({ navigation }) {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Username"
+        placeholder="Usuário"
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Senha"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirm Password"
+        placeholder="Confirme sua senha"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
-      <Button title="Register" onPress={handleRegister} />
+      <Button title="Registro" onPress={handleRegister} />
     </View>
   );
 }
